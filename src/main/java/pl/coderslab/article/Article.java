@@ -1,5 +1,6 @@
 package pl.coderslab.article;
 
+import lombok.*;
 import pl.coderslab.author.Author;
 import pl.coderslab.category.Category;
 
@@ -9,6 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@RequiredArgsConstructor
+
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
