@@ -13,7 +13,6 @@ import java.util.List;
 @Getter
 @Setter
 @RequiredArgsConstructor
-
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,10 +20,8 @@ public class Article {
     @Column(length = 200)
     private String title;
     @ManyToOne
-    @JoinColumn(name = "author_id")
     private Author author;
-    @ManyToMany
-    @JoinTable(name = "category_article")
+    @ManyToMany(cascade = CascadeType.REMOVE)
     private List<Category> categories = new ArrayList<>();
     @Column(length = 10000)
     private String content;

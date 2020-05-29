@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form"
            uri="http://www.springframework.org/tags/form" %>
@@ -26,5 +25,11 @@
     </c:forEach>
 </table>
 
+<p><a href="/category/all">Lista kategorii </a>
+    <a href="/category/add">Dodaj kategorię </a></p>
+<p>
+    <a href="/author/all" target="_blank">Lista autorów</a>
+    <a href="/author/add" target="_blank">Dodaj autora</a>
+</p>
 </body>
 </html>

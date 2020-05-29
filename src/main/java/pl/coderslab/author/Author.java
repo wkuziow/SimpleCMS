@@ -1,11 +1,17 @@
 package pl.coderslab.author;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.*;
+import pl.coderslab.article.Article;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class Author {
 
     @Id
@@ -13,4 +19,8 @@ public class Author {
     private Long id;
     private String firstName;
     private String lastName;
+    @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
+    private List<Article> articles = new ArrayList<>();
+
+
 }

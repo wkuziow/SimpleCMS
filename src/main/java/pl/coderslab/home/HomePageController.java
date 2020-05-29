@@ -21,9 +21,10 @@ public class HomePageController {
 
     @RequestMapping("/")
     public String home(Model model) {
-        List<Article> articles = articleRepository.findAll().subList(1,5);
+        List<Article> articles = articleRepository.findAll();
         List<Article> newList = articles.stream().
                 sorted(Comparator.comparing(Article::getCreated).reversed()).
+                limit(5).
                 map(x->{Article newArticle = new Article();
                 newArticle.setTitle(x.getTitle());
                 newArticle.setCreated(x.getCreated());
