@@ -16,6 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import pl.coderslab.author.AuthorConverter;
+import pl.coderslab.category.CategoryConverter;
 
 import javax.persistence.EntityManagerFactory;
 import javax.validation.Validator;
@@ -62,7 +63,7 @@ public class AppConfig implements WebMvcConfigurer {
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(getAuthorConverter());
-        registry.addConverter(getCategoryConverter);
+        registry.addConverter(getCategoryConverter());
     }
     @Bean
     public AuthorConverter getAuthorConverter() {

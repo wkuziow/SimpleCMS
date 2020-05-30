@@ -4,37 +4,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>SpringCMS</title>
+    <title>Articles List</title>
 </head>
 <body>
-
 <table>
     <tr>
         <th>Title</th>
-        <th>Created</th>
         <th>Content</th>
+        <th>Created</th>
+        <th>Updated</th>
+        <th>Category</th>
+        <th>Author</th>
     </tr>
     <c:forEach var="article" items="${articles}">
         <tr>
             <td>${article.title}</td>
-            <td>${article.created}</td>
             <td>${article.content}</td>
-
-
+            <td>${article.created}</td>
+            <td>${article.updated}</td>
+             <td>Kategoria</td>
+             <td>Autor</td>
+            <td>
+                <a href="/author/delete/author.id}">Delete</a>
+                <a href="/author/update/author.id">Edit</a>
+            </td>
         </tr>
     </c:forEach>
 </table>
-
-<p><a href="/category/all">Lista kategorii </a>
-    <a href="/category/add">Dodaj kategorię </a></p>
-<p>
-    <a href="/author/all" target="_blank">Lista autorów</a>
-    <a href="/author/add" target="_blank">Dodaj autora</a>
-</p>
-
-<p>
-    <a href="/article/all" target="_blank">Lista artykułów</a>
-    <a href="/article/add" target="_blank">Dodaj artykuł</a>
-</p>
+<a href="/article/add">Dodaj artykuł</a>
 </body>
 </html>

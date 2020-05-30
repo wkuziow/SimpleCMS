@@ -23,18 +23,18 @@ public class ArticleController {
     AuthorRepository authorRepository;
     CategoryRepository categoryRepository;
 
-    @ModelAttribute("authorsList")
-    public List<Author> findAllAuthors() {
-        return authorRepository.findAll();
-    }
-    @ModelAttribute("categoryList")
-    public List<Category> findAllCategories() {
-        return categoryRepository.findAll();
-    }
+//    @ModelAttribute("authorsList")
+//    public List<Author> findAllAuthors() {
+//        return authorRepository.findAll();
+//    }
+//    @ModelAttribute("categoryList")
+//    public List<Category> findAllCategories() {
+//        return categoryRepository.findAll();
+//    }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String getAllAuthors(Model model) {
         model.addAttribute("articles", articleRepository.findAll());
-        return "author/authorList";
+        return "article/articleList";
     }
 }
