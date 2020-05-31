@@ -19,8 +19,10 @@ public class Author {
     private Long id;
     private String firstName;
     private String lastName;
-    @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
-    private List<Article> articles = new ArrayList<>();
 
-
+    //    @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
+//    private List<Article> articles = new ArrayList<>();
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 }

@@ -19,10 +19,13 @@ public class Article {
     private Long id;
     @Column(length = 200)
     private String title;
+
     @ManyToOne
     private Author author;
-    @ManyToMany(cascade = CascadeType.REMOVE)
+
+    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Category> categories = new ArrayList<>();
+
     @Column(length = 10000)
     private String content;
     private LocalDateTime created;

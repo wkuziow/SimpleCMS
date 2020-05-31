@@ -16,14 +16,14 @@
         <th>Category</th>
         <th>Author</th>
     </tr>
-    <c:forEach var="article" items="${articles}">
+    <c:forEach var="article" items="${articlesList}">
         <tr>
             <td>${article.title}</td>
             <td>${article.content}</td>
             <td>${article.created}</td>
             <td>${article.updated}</td>
-             <td>Kategoria</td>
-             <td>Autor</td>
+            <td><c:forEach var="category" items="${article.categories}">${category.name}</c:forEach></td>
+            <td>${article.author.fullName}</td>
             <td>
                 <a href="/author/delete/author.id}">Delete</a>
                 <a href="/author/update/author.id">Edit</a>

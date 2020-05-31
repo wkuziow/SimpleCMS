@@ -13,13 +13,14 @@ INSERT INTO SpringCMS.Article (content, created, title, updated, author_id) VALU
 INSERT INTO SpringCMS.Article (content, created, title, updated, author_id) VALUES ('Słynny miliarder sir Richard Branson poinformował, że bez 500 mln GBP ratunkowej pożyczki jego linia Virgin Atlantic, będzie musiała ogłosić upadłość. Słynący z ekstrawagancji biznesmen chciałby te pieniądze otrzymać od brytyjskiego rządu, a chcąc uwiarygodnić swe starania, jest gotowy oddać w zastaw posiadaną przez siebie prywatną wyspę.', '2020-04-13 20:16:38.000000', 'Znany bogacz odda własną wyspę, by ratować swoje linie! Chce aż 2,5 mld PLN pożyczki', null, 3);
 INSERT INTO SpringCMS.Article (content, created, title, updated, author_id) VALUES ('Takie zdjęcia nie zdarzają się często. 2 pingwiny, stojące przy sobie łapa w łapę i podziwiające spokojne niebo nad Melbourne. Ten widok jest po prostu przeuroczy, a historia za nim stojąca łapie za serce.', '2020-04-16 20:16:43.000000', 'Romantyczne spotkanie pingwinów. Podziwiały nocne niebo tuląc się do siebie', null, 5);
 INSERT INTO SpringCMS.Article (content, created, title, updated, author_id) VALUES ('Jeśli nie widzieliście bioluminescencyjnych fal dotychczas, to czas nadrobić zaległości. Światło odchodzące od rozbijających się morskich toni wygląda nocą przepięknie, co pokazał Patrick Coyne z Newport. Jest to zasługa czystych sił przyrody.', '2020-04-19 20:16:48.000000', 'Fotograf ujął piękne zjawisko ”świecących fal”. Skąd się to wzięło?', null, 5);
-INSERT INTO SpringCMS.category_article (articles_id, categories_id) VALUES (2, 1);
-INSERT INTO SpringCMS.category_article (articles_id, categories_id) VALUES (2, 3);
-INSERT INTO SpringCMS.category_article (articles_id, categories_id) VALUES (3, 4);
-INSERT INTO SpringCMS.category_article (articles_id, categories_id) VALUES (3, 3);
-INSERT INTO SpringCMS.category_article (articles_id, categories_id) VALUES (4, 4);
-INSERT INTO SpringCMS.category_article (articles_id, categories_id) VALUES (5, 1);
-INSERT INTO SpringCMS.category_article (articles_id, categories_id) VALUES (5, 2);
-INSERT INTO SpringCMS.category_article (articles_id, categories_id) VALUES (5, 4);
-INSERT INTO SpringCMS.category_article (articles_id, categories_id) VALUES (6, 1);
-INSERT INTO SpringCMS.category_article (articles_id, categories_id) VALUES (6, 2);
+INSERT INTO SpringCMS.Article_Category (Article_id, categories_id) VALUES (2, 1);
+INSERT INTO SpringCMS.Article_Category (Article_id, categories_id) VALUES (2, 3);
+INSERT INTO SpringCMS.Article_Category (Article_id, categories_id) VALUES (3, 4);
+INSERT INTO SpringCMS.Article_Category (Article_id, categories_id) VALUES (3, 3);
+INSERT INTO SpringCMS.Article_Category (Article_id, categories_id) VALUES (4, 4);
+INSERT INTO SpringCMS.Article_Category (Article_id, categories_id) VALUES (5, 1);
+INSERT INTO SpringCMS.Article_Category (Article_id, categories_id) VALUES (5, 2);
+INSERT INTO SpringCMS.Article_Category (Article_id, categories_id) VALUES (5, 4);
+INSERT INTO SpringCMS.Article_Category (Article_id, categories_id) VALUES (6, 1);
+INSERT INTO SpringCMS.Article_Category (Article_id, categories_id) VALUES (6, 2);
+INSERT INTO SpringCMS.Article_Category (Article_id, categories_id) VALUES (1, 1)

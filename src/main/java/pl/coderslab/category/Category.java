@@ -1,14 +1,6 @@
 package pl.coderslab.category;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import pl.coderslab.article.Article;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Entity
@@ -20,13 +12,11 @@ public class Category {
     private String name;
     @Column(nullable = true)
     private String description;
-    @ManyToMany (mappedBy = "categories", cascade = CascadeType.REMOVE)
-    private List<Article> articles = new ArrayList<>();
 
-    public Category(String name, String description, List<Article> articles) {
+
+    public Category(String name, String description) {
         this.name = name;
         this.description = description;
-        this.articles = articles;
     }
     public Category() {
     }
@@ -35,5 +25,13 @@ public class Category {
     }
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
