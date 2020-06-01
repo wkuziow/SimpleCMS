@@ -22,11 +22,11 @@
             <td>${article.content}</td>
             <td>${article.created}</td>
             <td>${article.updated}</td>
-            <td><c:forEach var="category" items="${article.categories}">${category.name}</c:forEach></td>
+            <td><c:forEach var="category" items="${article.categories}">${category.name} </c:forEach></td>
             <td>${article.author.fullName}</td>
             <td>
-                <a href="/author/delete/author.id}">Delete</a>
-                <a href="/author/update/author.id">Edit</a>
+                <a href="/article/delete/${article.id}">Delete</a>
+                <a href="/article/update/${article.id}">Edit</a>
             </td>
         </tr>
     </c:forEach>

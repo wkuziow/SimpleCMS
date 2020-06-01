@@ -5,14 +5,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.author.Author;
 import pl.coderslab.author.AuthorRepository;
 import pl.coderslab.category.Category;
 import pl.coderslab.category.CategoryRepository;
 
+import java.awt.print.Book;
 import java.util.List;
 
 @Controller
@@ -43,5 +44,23 @@ public class ArticleController {
     public String getAllAuthors(Model model) {
         model.addAttribute("articlesList", articleRepository.findAll());
         return "article/articleList";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteArticle(@PathVariable Long id) {
+        articleRepository.delete(articleRepository.findArticleById(id));
+        return "redirect:../all";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public String addArticleGetForm(Model model) {
+        model.addAttribute("article", new Article());
+        return "article/addArticle";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String addArticleProcessForm(@ModelAttribute Article article) {
+        articleRepository.save(article);
+        return "redirect:all";
     }
 }

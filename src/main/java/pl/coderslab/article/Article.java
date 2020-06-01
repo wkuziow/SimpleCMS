@@ -23,7 +23,7 @@ public class Article {
     @ManyToOne
     private Author author;
 
-    @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @ManyToMany( fetch = FetchType.EAGER)
     private List<Category> categories = new ArrayList<>();
 
     @Column(length = 10000)

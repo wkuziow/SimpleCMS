@@ -38,20 +38,20 @@ public class AuthorController {
     }
 
     @GetMapping("/update/{id}")
-    public String update(@PathVariable Long id, Model model) {
+    public String updateAuthorGet(@PathVariable Long id, Model model) {
         Author author = authorRepository.findAuthorById(id);
         model.addAttribute("author", author);
         return "author/addAuthor";
     }
 
     @PostMapping("/update/{id}")
-    public String update(@PathVariable Long id, @ModelAttribute Author author) {
+    public String updateAuthorPost(@PathVariable Long id, @ModelAttribute Author author) {
         authorRepository.save(author);
         return "redirect:../all";
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    public String deleteAuthor(@PathVariable Long id) {
         authorRepository.delete(authorRepository.findAuthorById(id));
 
         return "redirect:../all";
