@@ -4,7 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Getter
@@ -14,6 +15,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 100)
+    @Size(min = 5)
+    @NotNull
     private String name;
     @Column(nullable = true)
     private String description;

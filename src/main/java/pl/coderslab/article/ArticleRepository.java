@@ -13,4 +13,6 @@ import java.util.List;
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     Article findArticleById(long l);
+    @Query("select a from Article a join fetch a.author join fetch a.categories where a.id = ?1")
+    Article findByIdAndAuthorAndCategories(long l);
 }

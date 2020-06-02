@@ -17,11 +17,15 @@
         <tr>
             <td>${category.name}</td>
             <td>${category.description}</td>
-
+            <td>
+                <a href="/category/delete/${category.id}">Delete</a>
+                <a href="/category/update/${category.id}">Edit</a>
+            </td>
 
 
         </tr>
     </c:forEach>
 </table>
+<a href="/category/add">Dodaj kategorię</a>
 </body>
 </html>

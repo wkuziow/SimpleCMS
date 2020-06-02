@@ -14,6 +14,7 @@ import pl.coderslab.category.Category;
 import pl.coderslab.category.CategoryRepository;
 
 import java.awt.print.Book;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -62,5 +63,21 @@ public class ArticleController {
     public String addArticleProcessForm(@ModelAttribute Article article) {
         articleRepository.save(article);
         return "redirect:all";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateArticleGet(@PathVariable Long id, Model model) {
+        Article article = articleRepository.findByIdAndAuthorAndCategories(id);
+        LocalDateTime created = article.getCreated();
+        model.addAttribute("article", article);
+        return "article/addArticle";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateArticlePost(@PathVariable Long id, @ModelAttribute Article article) {
+        LocalDateTime created = articleRepository.findByIdAndAuthorAndCategories(id).getCreated();
+        article.setCreated(created);
+        articleRepository.save(article);
+        return "redirect:../all";
     }
 }

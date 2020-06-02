@@ -19,7 +19,7 @@
     <br/><br/>
 
     <label for="authorsId">Autor:</label>
-    <form:select path="author" items="${authorsList}" itemLabel="fullName" itemValue="id" id="authorsId"/>
+    <form:radiobuttons path="author.id" items="${authorsList}" itemLabel="fullName" itemValue="id" id="authorsId"/>
     <br/><br/>
 
     <input type="submit" value="Save">

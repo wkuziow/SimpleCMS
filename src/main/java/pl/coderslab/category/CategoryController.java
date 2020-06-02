@@ -4,11 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import pl.coderslab.author.Author;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/category")
@@ -25,7 +25,7 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String addCategoryGetForm(Model model) {
+    public String addCategoryGetForm( Model model) {
         model.addAttribute("category", new Category());
         return "category/addCategory";
     }
@@ -34,5 +34,25 @@ public class CategoryController {
     public String addCategoryProcessForm(@ModelAttribute Category category) {
         categoryRepository.save(category);
         return "redirect:all";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateCategoryGet(@PathVariable Long id, Model model) {
+        Category category = categoryRepository.findCategoryById(id);
+        model.addAttribute("category", category);
+        return "category/addCategory";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updatecategoryPost(@PathVariable Long id, @ModelAttribute Category category) {
+        categoryRepository.save(category);
+        return "redirect:../all";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteCategory(@PathVariable Long id) {
+        categoryRepository.delete(categoryRepository.findCategoryById(id));
+
+        return "redirect:../all";
     }
 }
