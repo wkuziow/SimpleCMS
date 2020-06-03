@@ -25,8 +25,8 @@
     </c:forEach>
 </table>
 
-<p><a href="/category/all">Lista kategorii </a>
-    <a href="/category/add">Dodaj kategorię </a></p>
+<p><a href="/category/all" target="_blank">Lista kategorii </a>
+    <a href="/category/add" target="_blank">Dodaj kategorię </a></p>
 <p>
     <a href="/author/all" target="_blank">Lista autorów</a>
     <a href="/author/add" target="_blank">Dodaj autora</a>

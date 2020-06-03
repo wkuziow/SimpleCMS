@@ -19,22 +19,23 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 200)
+    @Column(length = 2)
     @NotNull
-    @Min(200)
+    @Min(2)
     private String title;
 
     @ManyToOne
     private Author author;
 
+
+    //@NotNull
+    //@Min(1)
     @ManyToMany( fetch = FetchType.EAGER)
-    @NotNull
-    @Min(1)
     private List<Category> categories = new ArrayList<>();
 
     @Column(length = 10000)
     @NotNull
-    @Min(500)
+    @Min(5)
     private String content;
     private LocalDateTime created;
     private LocalDateTime updated;

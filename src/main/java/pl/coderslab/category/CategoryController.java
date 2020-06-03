@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.author.Author;
 
@@ -31,7 +33,12 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addCategoryProcessForm(@ModelAttribute Category category) {
+    public String addCategoryProcessForm(@ModelAttribute @Validated Category category,
+                                         BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "category/addCategory";
+        }
+
         categoryRepository.save(category);
         return "redirect:all";
     }
@@ -44,7 +51,12 @@ public class CategoryController {
     }
 
     @PostMapping("/update/{id}")
-    public String updatecategoryPost(@PathVariable Long id, @ModelAttribute Category category) {
+    public String updatecategoryPost(@PathVariable Long id, @ModelAttribute @Validated Category category,
+                                     BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "category/addCategory";
+        }
+
         categoryRepository.save(category);
         return "redirect:../all";
     }

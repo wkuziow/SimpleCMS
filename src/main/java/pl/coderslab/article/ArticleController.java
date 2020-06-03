@@ -60,7 +60,11 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addArticleProcessForm(@ModelAttribute Article article) {
+    public String addArticleProcessForm(@ModelAttribute @Validated Article article,
+                                        BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "article/addArticle";
+        }
         articleRepository.save(article);
         return "redirect:all";
     }
@@ -74,7 +78,12 @@ public class ArticleController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateArticlePost(@PathVariable Long id, @ModelAttribute Article article) {
+    public String updateArticlePost(@PathVariable Long id, @ModelAttribute @Validated Article article,
+                                    BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "article/addArticle";
+        }
+
         LocalDateTime created = articleRepository.findByIdAndAuthorAndCategories(id).getCreated();
         article.setCreated(created);
         articleRepository.save(article);

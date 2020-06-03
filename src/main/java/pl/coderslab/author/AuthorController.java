@@ -8,10 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
-import java.awt.print.Book;
-import java.util.Optional;
-
 @Controller
 @RequestMapping("/author")
 @RequiredArgsConstructor
@@ -32,7 +28,12 @@ public class AuthorController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addAuthorProcessForm(@ModelAttribute Author author) {
+    public String addAuthorProcessForm(@ModelAttribute @Validated Author author,
+                                       BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "author/addAuthor";
+        }
+
         authorRepository.save(author);
         return "redirect:all";
     }
@@ -45,7 +46,12 @@ public class AuthorController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateAuthorPost(@PathVariable Long id, @ModelAttribute Author author) {
+    public String updateAuthorPost(@PathVariable Long id, @ModelAttribute @Validated Author author,
+                                   BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "author/addAuthor";
+        }
+
         authorRepository.save(author);
         return "redirect:../all";
     }
