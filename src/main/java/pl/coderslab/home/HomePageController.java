@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.article.Article;
 import pl.coderslab.article.ArticleRepository;
+import pl.coderslab.category.Category;
+import pl.coderslab.category.CategoryRepository;
 
 import java.util.Comparator;
 import java.util.List;
@@ -18,6 +20,7 @@ import java.util.stream.Collectors;
 public class HomePageController {
     @Autowired
     private final ArticleRepository articleRepository;
+    private final CategoryRepository categoryRepository;
 
     @RequestMapping("/")
     public String home(Model model) {
@@ -32,7 +35,10 @@ public class HomePageController {
                 return newArticle;
                 }).
                 collect(Collectors.toList());
+
+        List<Category> categories = categoryRepository.findAll();
         model.addAttribute("articles", newList);
+        model.addAttribute("categoriesHome", categories);
         return "home/home";
     }
 }

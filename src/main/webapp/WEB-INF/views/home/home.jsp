@@ -36,5 +36,22 @@
     <a href="/article/all" target="_blank">Lista artykułów</a>
     <a href="/article/add" target="_blank">Dodaj artykuł</a>
 </p>
+
+<p>
+    <a href="/article/draft/all" target="_blank">Lista artykułów</a>
+    <a href="/article/draft/add" target="_blank">Dodaj draft</a>
+</p>
+
+<table>
+    <tr>
+        <th>Category</th>
+    </tr>
+    <c:forEach var="category" items="${categoriesHome}">
+        <tr>
+            <td><a href="article/category/${category.id}" target="_blank"> ${category.name}</a></td>
+        </tr>
+    </c:forEach>
+</table>
+
 </body>
 </html>

@@ -15,6 +15,7 @@
         <th>Updated</th>
         <th>Category</th>
         <th>Author</th>
+        <th>Draft</th>
     </tr>
     <c:forEach var="article" items="${articlesList}">
         <tr>
@@ -28,6 +29,7 @@
                 <a href="/article/delete/${article.id}">Delete</a>
                 <a href="/article/update/${article.id}">Edit</a>
             </td>
+            <td>${article.draft}</td>
         </tr>
     </c:forEach>
 </table>

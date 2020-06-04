@@ -15,4 +15,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     Article findArticleById(long l);
     @Query("select a from Article a join fetch a.author join fetch a.categories where a.id = ?1")
     Article findByIdAndAuthorAndCategories(long l);
+
+    @Query("select a from Article a join fetch a.categories c where c.id = ?1")
+    List<Article> findByCat(long l);
 }

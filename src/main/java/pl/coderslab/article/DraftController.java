@@ -1,7 +1,5 @@
 package pl.coderslab.article;
 
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,20 +11,19 @@ import pl.coderslab.author.AuthorRepository;
 import pl.coderslab.category.Category;
 import pl.coderslab.category.CategoryRepository;
 
-import java.awt.print.Book;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
-@RequestMapping("/article")
+@RequestMapping("/article/draft")
+public class DraftController {
 
-public class ArticleController {
     @Autowired
     ArticleRepository articleRepository;
     AuthorRepository authorRepository;
     CategoryRepository categoryRepository;
 
-    public ArticleController(AuthorRepository authorRepository, CategoryRepository categoryRepository) {
+    public DraftController(AuthorRepository authorRepository, CategoryRepository categoryRepository) {
         this.authorRepository = authorRepository;
         this.categoryRepository = categoryRepository;
     }
@@ -48,23 +45,24 @@ public class ArticleController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteArticle(@PathVariable Long id) {
+    public String deleteDraft(@PathVariable Long id) {
         articleRepository.delete(articleRepository.findArticleById(id));
         return "redirect:../all";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String addArticleGetForm(Model model) {
+    public String addDraftGetForm(Model model) {
         model.addAttribute("article", new Article());
         return "article/addArticle";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addArticleProcessForm(@ModelAttribute @Validated(ArticleValidationGroup.class) Article article,
+    public String addDraftProcessForm(@ModelAttribute @Validated(DraftValidationGroup.class) Article article,
                                         BindingResult bindingResult) {
         if (bindingResult.hasErrors()){
             return "article/addArticle";
         }
+        article.setDraft(true);
         articleRepository.save(article);
         return "redirect:all";
     }
@@ -78,7 +76,7 @@ public class ArticleController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateArticlePost(@PathVariable Long id, @ModelAttribute @Validated(ArticleValidationGroup.class) Article article,
+    public String updateArticlePost(@PathVariable Long id, @ModelAttribute @Validated(DraftValidationGroup.class) Article article,
                                     BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "article/addArticle";
@@ -86,13 +84,8 @@ public class ArticleController {
 
         LocalDateTime created = articleRepository.findByIdAndAuthorAndCategories(id).getCreated();
         article.setCreated(created);
+        article.setDraft(true);
         articleRepository.save(article);
         return "redirect:../all";
-    }
-
-    @GetMapping("/category/{id}")
-    public String getArticlesByCategoryId(@PathVariable Long id, Model model) {
-        model.addAttribute("articlesList", articleRepository.findByCat(id));
-        return "article/articleList";
     }
 }
